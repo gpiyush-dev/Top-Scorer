@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker { image 'python:latest' } }
+  agent { docker { image '3.11.7-windowsservercore-ltsc2022' } }
   environment {
       DOCKER_HOST = 'tcp://localhost:2375'
   }
