@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'mymachine' }
+  docker { image 'python:latest' }
   stages {
     stage('Read and Parse Data') {
       steps {
