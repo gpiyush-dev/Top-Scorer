@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    docker { image 'python:latest' }
-  }
+  agent any
   stages {
     stage('Read and Parse Data') {
       steps {
