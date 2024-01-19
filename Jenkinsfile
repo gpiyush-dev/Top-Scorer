@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Read and Parse Data') {
       steps {
-        sh 'python3 ScoreParser.py'
+        bat 'python3 ScoreParser.py'
       }
     }
 
