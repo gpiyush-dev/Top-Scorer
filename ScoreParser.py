@@ -1,6 +1,3 @@
-import sys
-sys.path.append("C:\\Users\\Piyush\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages")
-
 import pandas as pd
 
 def analyze_marks(marks_data):
@@ -13,10 +10,7 @@ def analyze_marks(marks_data):
 
     # Calculate total marks for each student
     total_marks = [sum(student) for student in student_marks]
-
-    # Find the top three scorers
-    top_scorers_indices = sorted(range(len(total_marks)), key=lambda k: total_marks[k], reverse=True)[:3]
-    top_scorers = [(student_ids[index], total_marks[index]) for index in top_scorers_indices]
+    unique_total_marks = sorted(set(total_marks), reverse=True)[:3]
 
     # Count the number of failed candidates
     failed_candidates = sum(any(mark < 35 for mark in student) for student in student_marks)
@@ -30,7 +24,7 @@ def analyze_marks(marks_data):
     top_10_math_scorer_ids = [student[0] for student in top_10_math_scores]
 
     # Extracting IDs and scores of top 3 scorers
-    top_3_scorers_with_scores = [(student_ids[index], total_marks[index]) for index in top_scorers_indices]
+    top_3_scorers_with_scores = [(student_ids[index], total_marks[index]) for index in range(len(total_marks)) if total_marks[index] in unique_total_marks]
 
     return top_3_scorers_with_scores, failed_candidates, hundred_scorers, top_10_math_scorer_ids
 
@@ -57,3 +51,5 @@ df = pd.DataFrame(data)
 output_excel_file = 'analysis_results.xlsx'
 df.to_excel(output_excel_file, index=False)
 print(f"Results saved to {output_excel_file}")
+
+
